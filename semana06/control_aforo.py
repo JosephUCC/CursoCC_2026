@@ -103,19 +103,47 @@ Otros casos para probar:
 
 
 # Desarrolle su solución a partir de esta línea.
-cantidades_grupos = []
-capacidad_maxima = 700
-ocupacion_actual = 0
+cupos_actuales = 0
+capacidad = 700
 grupos_aceptados = []
 grupos_rechazados = []
-try:
-    entrada = input("cantidad de personas(o fin para terminar): ").strip().lower()
-except ValueError:
-    print('Error: Debe ingresar un numero entero positivo')
+
+grupo = input("cantidad de personas(o fin para terminar): ").strip()
+
+while grupo != "fin":
+    try:
+        grupo = int(grupo)
+        if grupo >= 1:
+            if grupo + cupos_actuales > capacidad:
+                grupos_rechazados.append(grupo)
+                print('Lo sentimos, no hay espacio disponible')
+                print(f'Ocupacion actual: {cupos_actuales}')
+                print('Espacios disponibles: ',capacidad - cupos_actuales)
+            elif grupo + cupos_actuales <= 700:
+                grupos_aceptados.append(grupo)
+                cupos_actuales += grupo
+                print('Grupo agregado correctamente')
+                print(f'Ocupacion actual: {cupos_actuales}')
+                print('Espacios disponibles: ',capacidad - cupos_actuales)
+            else:
+                print('No ingreso ningun grupo.')
     
-while entrada != "fin":
-    for grupo in cantidades_grupos
-        if grupo + ocupacion_actual <= 700
+        elif grupo < 0 or grupo == 0:
+            print('No se aceptan numeros negativos ni cero. El numero debe ser mayor a cero')
             
+
+        grupo = input("cantidad de personas(o fin para terminar): ").strip()
+    except ValueError:
+        print('La entrada no es un entero valido.')
+        grupo = input("cantidad de personas(o fin para terminar): ").strip()
+
+total_aceptados = 0
+for total in grupos_aceptados:
+    total_aceptados += total
+print(f'Cantidad de personas aceptadas: {total_aceptados}')
+print(f'Grupos registrados: {grupos_aceptados}')
+print(f'Grupos rechazados: {grupos_rechazados}')
+print(f'Capacidad: {capacidad}')
+print(f'Espacios disponibles: {capacidad - total_aceptados}')
 
 
