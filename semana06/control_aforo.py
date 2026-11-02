@@ -108,6 +108,7 @@ capacidad = 700
 grupos_aceptados = []
 grupos_rechazados = []
 
+
 grupo = input("cantidad de personas(o fin para terminar): ").strip()
 
 while grupo != "fin":
