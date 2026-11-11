@@ -17,7 +17,7 @@ print("Equivalencias publicadas:", len(equivalencias))
 conteo_medicamento = {}
 conteo_recetas = 0
 
-for indice in range(3):
+for indice in range(len(registros)):
     registro = registros[indice]
     print(f'Paciente: {registro["paciente_cedula"]}')
     print(f'Nombre: {registro["paciente_nombre"]}')
