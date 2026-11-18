@@ -44,11 +44,27 @@ def contar_y_limpiar(atenciones):
     print(f"E4 lista de medicamentos: {lista_medicamentos}")
 
     # P5. Muestre ejemplos de espacios o mayúsculas en hospital,
-    
     # diagnostico y medicamento.
+    for atencion in atenciones:
+        hospital = atencion.get("hospital", "")
+        diagnostico = atencion.get("diagnostico", "")
+        medicamento = atencion.get("medicamento", "")
+        print(f"Hospital: '{hospital}' | Diagnóstico: '{diagnostico}' | Medicamento: '{medicamento}'")
 
     # P6. Cuente los medicamentos con strip() y lower(). Muestre el
     # contador limpio y su total. Compare con P4.
+    conteo_medicamentos = {}
+
+    for atencion in atenciones:
+        medicamento = atencion.get("medicamento", "").strip().lower()
+        if medicamento in conteo_medicamentos:
+            conteo_medicamentos[medicamento] += 1
+        else:
+            conteo_medicamentos[medicamento] = 1
+    for medicamento, cantidad in conteo_medicamentos.items():
+        print(f"Medicamento: '{medicamento}' | Cantidad: {cantidad}")
+
+
 
     # P7. Agrupe los nombres limpios con las equivalencias de la guía.
     # Complete el diccionario. La clave es la variante y el valor es

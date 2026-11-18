@@ -1,0 +1,64 @@
+"""Semana 10: resolvemos juntos el caso pendiente de la Semana 9."""
+
+from lector_csv import cargar_atenciones
+
+
+def explorar_atenciones(atenciones):
+    """Decisión 1: ¿qué leímos y cuántas atenciones hay?"""
+    # Contamos las filas con un for. Luego miramos los campos de la primera.
+    cantidad = 0
+    for atencion in atenciones:
+        # Completamos aquí el contador.
+        cantidad += 1
+
+    print("Atenciones:", cantidad)
+    print("Campos:", list(atenciones[0]))
+
+
+def contar_categorias(atenciones):
+    """Decisión 2: ¿qué medicamentos, hospitales y diagnósticos aparecen?"""
+    medicamentos = {}
+    hospitales = {}
+    diagnosticos = {}
+
+    for atencion in atenciones:
+        # Los nombres ya vienen uniformes en el CSV.
+        # Contamos cada categoría en su diccionario con .get().
+        #  forma 1
+        if atencion["medicamento"] not in medicamentos:
+            medicamentos[atencion["medicamento"]] = 0
+        medicamentos[atencion["medicamento"]] += 1
+        #  forma 2
+        hospitales[atencion["hospital"]] = hospitales.get(atencion["hospital"], 0) + 1
+        diagnosticos[atencion["diagnostico"]] = diagnosticos.get(atencion["diagnostico"], 0) + 1
+    
+
+    print("Medicamentos:", medicamentos)
+    print("Hospitales:", hospitales)
+    print("Diagnósticos:", diagnosticos)
+
+
+def concluir(atenciones):
+    """Decisiones 3 y 4: ¿cuántas personas hay y cuánto esperaron?"""
+    visitas = {}
+    total_minutos = 0
+
+    for atencion in atenciones:
+        # Contamos la cédula y acumulamos los minutos de espera.
+        cedula = atencion["cedula"]
+        visitas[cedula] = visitas.get(cedula, 0) + 1
+        total_minutos += atencion["minutos_espera"]
+
+    print("Personas:", len(visitas))
+    print("Minutos de espera:", total_minutos)
+    print("Horas de espera:", total_minutos / 60)
+    print("Promedio:", total_minutos / len(atenciones))
+
+
+atenciones = cargar_atenciones()
+if atenciones:
+    explorar_atenciones(atenciones)
+    contar_categorias(atenciones)
+    concluir(atenciones)
+else:
+    print("Revisamos los TODO de lector_csv.py.")
