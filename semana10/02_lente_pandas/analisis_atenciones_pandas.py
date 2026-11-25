@@ -29,10 +29,12 @@ def contar_categorias(atenciones):
 def concluir(atenciones):
     """Decisiones 3 y 4: ¿cuántas personas hay y cuánto esperaron?"""
     # Contamos personas únicas por cédula, visitas por persona, total y promedio de espera.
+    #.nunique() para contar valores únicos en una columna.
+    #.value_counts() para contar la frecuencia de cada valor en una columna.
     print("Personas: ", atenciones["cedula"].nunique())
     print("Visitas por persona: ", atenciones["cedula"].value_counts())
-    print("Total de espera: ", atenciones["espera"].sum())
-    print("Promedio de espera: ", atenciones["espera"].mean())
+    print("Total de espera: ", atenciones["minutos_espera"].sum())
+    print("Promedio de espera: ", atenciones["minutos_espera"].mean())
 
 
 try:
